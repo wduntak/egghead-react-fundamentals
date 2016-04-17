@@ -10,22 +10,33 @@ class App extends React.Component {
 			text: 'This is the state text',
 			category: 0
 		}
+		this.update = this.update.bind(this)
 	}
 	update(e) {
 		this.setState({text: e.target.value})
 	}
 	render() {
-		let text = this.props.text
 		return (
 			<div>
-				<b>Hello World! {text}</b><br />
-				<input 
-					type="text"
-					onChange={this.update.bind(this)} /> 
-				<p>{this.state.text}</p>
+				<Widget text={this.state.text} update={this.update} />
+				<Widget text={this.state.text} update={this.update} />
+				<Widget text={this.state.text} update={this.update} />
+				<Widget text={this.state.text} update={this.update} />
 			</div>
 		)
 	}
+}
+
+const Widget = (props) => {
+	return (
+		<div>
+			<b>Hello World!</b><br />
+			<input 
+				type="text"
+				onChange={props.update} /> 
+			<p>{props.text}</p>
+		</div>
+	)
 }
 
 App.propTypes = {
